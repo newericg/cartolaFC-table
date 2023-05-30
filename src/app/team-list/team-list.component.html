@@ -1,0 +1,56 @@
+<div class="main-container">
+  <table  *ngIf="dataSource" mat-table [dataSource]="dataSource" class="table mat-elevation-z8">
+  
+    <ng-container matColumnDef="Emblema">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element">
+        <img [src]="element.time.url_escudo_png" alt="emblema">
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Nome">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let element"> {{element.time.nome}} </td>
+    </ng-container>
+  
+    
+    <ng-container matColumnDef="Patrimonio">
+      <th mat-header-cell *matHeaderCellDef> Cartoletas </th>
+      <td mat-cell *matCellDef="let element"> {{element.patrimonio}} </td>
+    </ng-container>
+  
+    
+    <ng-container matColumnDef="Pontuação Rodada Atual">
+      <th mat-header-cell *matHeaderCellDef> Pontuação Rodada Atual </th>
+      <td mat-cell *matCellDef="let element"> {{element.pontos.toFixed(2)}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Pontuação Total">
+      <th mat-header-cell *matHeaderCellDef> Pontuação Total </th>
+      <td mat-cell *matCellDef="let element"> {{element.pontos_campeonato.toFixed(2)}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Média">
+      <th mat-header-cell *matHeaderCellDef> Média </th>
+      <td mat-cell *matCellDef="let element"> {{(element.pontos_campeonato/element.rodada_atual).toFixed(2)}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Remover">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td  mat-cell *matCellDef="let element, let i = index" >
+          <mat-icon  (click)="removeTeam(i)" aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+  <mat-spinner *ngIf="dataSource && dataSource.loading$ | async"></mat-spinner>
+  
+  <app-button (onClick)="saveTable()" buttonColor="secundary" buttonText="Salvar tabela"></app-button>
+    
+  <!-- <h2 *ngIf="!loading && dataSource.length === 0">Adicione um time!</h2> -->
+</div>
+

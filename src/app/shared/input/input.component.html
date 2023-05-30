@@ -1,0 +1,7 @@
+<form [formGroup]='form' class="example-form" (ngSubmit)="addTeam()">
+    <mat-form-field class="example-full-width">
+      <mat-label>{{ inputText }}</mat-label>
+      <input formControlName="name" [name]="teamInput" matInput value="">
+    </mat-form-field>
+    <app-button buttonColor="primary" buttonText="Adicionar time"></app-button>
+</form>

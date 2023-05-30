@@ -1,0 +1,37 @@
+
+<div class="dialog-main">
+    <h1> {{ data.title }} </h1>
+    <p> {{ data.text }}</p>
+    <lord-icon
+    *ngIf="data.icon"
+    [src]="data.iconSrc"
+    trigger="loop"
+    delay="1000"
+    [colors]="data.iconColor"
+    style="width:250px;height:50px">
+</lord-icon>
+</div>
+
+<table *ngIf="data.list" mat-table [dataSource]="data.data" class="table mat-elevation-z8">
+
+    <ng-container matColumnDef="Emblema">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element">
+            <img [src]="element.url_escudo_png" alt="emblema">
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Nome">
+        <th mat-header-cell *matHeaderCellDef> Nome </th>
+        <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Add">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element, let i = index">
+            <mat-icon (click)="getTeam(i)" aria-hidden="false" aria-label="Example home icon" fontIcon="add"></mat-icon>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

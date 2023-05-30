@@ -1,0 +1,17 @@
+.main {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* padding-top: 152px; */
+    margin-top: 72px;
+}
+
+.main:nth-child() {
+  max-width: 80%;          
+}
+
+h3 {
+    margin: 55px 0;
+}

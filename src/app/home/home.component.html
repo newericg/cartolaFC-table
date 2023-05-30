@@ -1,0 +1,8 @@
+<app-navbar></app-navbar>
+<div class="main" *ngIf="!loading">
+    <h3>Rodada atual : {{rodadaAtual}}</h3>
+    <app-team-list [teamInput]='teamName'></app-team-list>
+    <app-input (updateTeam)="updateTable($event)" [teamInput]="teamName" inputText="Nome do time"></app-input>
+    <app-button (onClick)="clearTable()" buttonColor="warn" buttonText="Apagar Tabela"></app-button>
+</div>
+<mat-spinner *ngIf="loading"></mat-spinner>
